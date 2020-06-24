@@ -1,0 +1,71 @@
+/// px을 rem으로 변환해주는 mixin
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {Boolean} $with-px [false] - IE8 이하를 위해 PX값을 같이 return할지에 대한 true or false
+/// @param {Number} $rem-baseSize [16] - 브라우져 기본 font-size
+/// @param {property} $property [null] - CSS로 선언할 property 이름
+/// @param {value} $values [null] - CSS로 선언할 property 속성 값
+/// @example scss - Scss
+///		.foo {
+///			@include rem(font-size,12px);
+///		}
+///   $with-px = true일때
+///		.bar {
+///			@include rem(margin,10px 9px 8px 7px);
+///		}
+///   $with-px = false일때
+///		.baz {
+///			@include rem(top,10px);
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 font-size: 0.75rem;
+///		 }
+///		.bar{
+///			 margin: 10px 9px 8px 7px;
+///			 margin: 0.625rem 0.5625rem 0.5rem 0.4375rem;
+///		 }
+///		.bar{
+///			 top: 0.625rem;
+///		 }
+///
+
+@mixin rem($property , $values) {
+	$px : ();
+	$rem: ();
+
+	$root: $rem-base-size;
+
+	@each $value in $values {
+		@if $value == 0 or $value == auto {
+			$px : append($px , $value);
+			$rem: append($rem, $value);
+		} @else if type-of($value) == number {
+			$unit: unit($value);
+			$val: strip-unit($value);
+
+			@if $unit == "px" {
+				$px : append($px, $value);
+				$rem: append($rem, ($val / $root + rem));
+			}
+
+			@if $unit == "rem" {
+				$px : append($px, ($val * $root + px));
+				$rem: append($rem, $value);
+			}
+		}	@else {
+			$px : append($px, $value);
+			$rem: append($rem, $value);
+		}
+	}
+
+	@if $px == $rem {
+		#{$property}: $px;
+	} @else {
+	  @if ($with-px == true){
+		  #{$property} : $px;
+	  }
+		#{$property}: $rem;
+	}
+}

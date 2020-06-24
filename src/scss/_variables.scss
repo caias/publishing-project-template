@@ -1,0 +1,86 @@
+$palettes: (
+	white: (
+		1: #fff,
+		2: #f3f4f8,
+		3: #f6f9fe,
+		4: #f8f8f8,
+		5: #f5f6f9,
+	),
+	black: (
+		1: #000,
+		2: #555,
+		3: #999,
+		4: #d7d7d7,
+		5: #c0c2c9,
+		6: #666,
+		7: #dcdfe4,
+		8: #c1c3ca,
+	),
+	red: (
+		1: #d60e0e,
+	),
+	green: (
+		1: #14692b,
+	),
+	blue: (
+		1: #2d77c7,
+		2: #0060af,
+		3: #041047,
+		4: #0e62bc,
+	),
+);
+
+// color
+$white: color(white, 1);
+$black: color(black, 1);
+$red: color(red, 1);
+$green: color(green, 1);
+$blue: color(blue, 1);
+
+//reset 폰트 관련
+$font-color-base: color(black, 2) !default;
+$font-size-base: 14px !default;
+$font-family-base: 'Noto-regular', sans-serif !default;
+$semi-bold: "Noto-medium", sans-serif;
+$bold: "Noto-bold", sans-serif;
+$content-center-size: 1200px !default;
+
+// 이미지 경로 관련 variable
+// $img-url : "../../dist/images/sprite";
+$img-url : "/dist/images";
+$sprite : "#{$img-url}/sprite/img_sprite.png";
+$img-retina : "#{$img-url}/sprite/retina.png";
+$img-retina2x : "#{$img-url}/sprite/retina2x.png";
+
+//border basic style - border mixin 관련
+$border-color-base: color(black, 4) !default;
+$border-style-base: solid !default;
+$border-width-base: 1px !default;
+
+// input status
+$input-placeholder-font-color: color(black, 3);
+$input-disable-background-color: color(white, 4);
+$input-disable-border-color: $border-color-base;
+$input-disable-font-color: $black;
+$input-space: 10px;
+
+// 공통 여백 사이즈
+$default-space: 10px;
+$primary-space: 20px;
+
+$header-size: 60px;
+$background-color-base: color(white, 2);
+
+// route2
+$sqrt2 : 1.41421356237;
+
+// z-index 매핑
+$z-indexes: (
+	zero				: 0,
+	low					: 5,
+	mid					: 10,
+	high				: 15,
+	higher			: 20,
+	dim         : 150,
+	modal       : 200
+);

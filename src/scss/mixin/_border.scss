@@ -1,0 +1,42 @@
+/// border-style basic & multi (프로젝트별 공통 블릿에 따라 Default값 변경)
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {Color} $border-color [#999] - border-color
+/// @param {value} $border-width [1px] - border-width
+/// @param {value} $border-style [solid] - border-style
+/// @example scss - Scss
+///		.foo {
+///			@include bd()
+///		}
+///		.bar {
+///			@include bd($border-width: 2px 0 0 2px);
+///		}
+///		.baz {
+///			@include bd(color(red,1),$border-width: 2px 0);
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 border: 1px solid #999;
+///		 }
+///		.bar{
+///			 border-style: solid;
+///			 border-color: #999;
+///			 border-width: 2px 0 0 2px;
+///		 }
+///		.baz{
+///			 border-style: solid;
+///			 border-color: #ed1c24;
+///			 border-width: 2px 0;
+///		 }
+///
+
+@mixin bd($border-color: $border-color-base, $border-width: $border-style-base , $border-style: $border-width-base){
+	@if length($border-width) > 1 {
+		border-style: $border-style;
+		border-color: $border-color;
+		border-width: $border-width;
+	}@else {
+		border: $border-width $border-style $border-color;
+	}
+}

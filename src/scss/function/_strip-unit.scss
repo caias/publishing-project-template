@@ -1,0 +1,18 @@
+/// 단위값 제거
+/// @access public
+/// @group Function
+/// @param {Number} $number - 단위가 붙어있는 숫자
+/// @return {Number} - 단위값이 없는 상태로 반환
+/// @example scss - Scss
+///   $width : 42px;
+///   $value : strip-unit($width);
+///   $value = 42
+///
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

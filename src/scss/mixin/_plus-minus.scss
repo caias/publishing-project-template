@@ -1,0 +1,42 @@
+@mixin plusMinus($size, $lineWidth, $color) {
+	box-sizing: border-box;
+	transition: transform 0.3s;
+	width: $size;
+	height: $size;
+	transform: rotate(180deg);
+	position: relative;
+
+	&.on {
+		transform: rotate(0deg);
+	}
+	&::before {
+		content: '';
+		display: block;
+		width: $size;
+		height:0px;
+		border-bottom: solid $lineWidth $color;
+		position: absolute;
+		bottom:$size /2 - $lineWidth/2;
+		transform: rotate(90deg);
+		transition: width 0.3s;
+	}
+	&.on::before {
+		content: '';
+		display: block;
+		width: 0px;
+		height:0px;
+		border-bottom: solid $lineWidth $color;
+		position: absolute;
+		bottom:$size /2 - $lineWidth/2;
+		transform: rotate(90deg);
+	}
+	&::after {
+		content: '';
+		display: block;
+		width: $size;
+		height:0px;
+		border-bottom: solid $lineWidth $color;
+		position: absolute;
+		bottom:$size /2 - $lineWidth/2;
+	}
+}

@@ -1,0 +1,207 @@
+/// arrow mixin (< . > 등의 angle arrow mixin / 프로젝트별 공통 블릿에 따라 Default값 변경)
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {String} $direction [down] - 화살표 방향설정(up,down,left,right)
+/// @param {Number} $width [14px] - 화살표 가로값
+/// @param {Number} $height [7px] - 화살표 세로값
+/// @param {Number} $thick [1px] - 화살표 두께값
+/// @param {Color} $color [#222] - 화살표 색상값
+/// @param {Number} $right [null] - 화살표의 right position값
+/// @param {Number} $left [null] - 화살표 left position값
+/// @param {Boolean} $hover [false] - hover시에 반대방향 활성화 되야 되는지 여부
+/// @param {String} $active [null] - 활성화시에 반대방향 활성화 클래스가 필요한경우 클래스 입력
+/// @example scss - Scss
+///    .foo {
+///      @include ic-angle(down,$right: 10px,$hover: true,$active: active);
+///    }
+/// @example css - Compile css
+///    .foo:before{
+///      content: "";
+///      width: 7px;
+///      height: 7px;
+///      border-color: #222;
+///      border-style: solid;
+///      position: absolute;
+///      top: 50%;
+///      right: 10px;
+///      -webkit-transform: translate(-50%, -50%) rotate(45deg);
+///      transform: translate(-50%, -50%) rotate(45deg);
+///      margin-top: -2px;
+///      border-width: 0 1px 1px 0;
+///    }
+///    .foo:hover:before,
+///    .foo.active:before{
+///      margin-top: 2px;
+///      border-width: 1px 0 0 1px;
+///    }
+///
+
+@mixin ic-angle($direction: "down", $width: 14px, $height: 7px, $thick: 1px, $color: #222, $right: null, $left: null, $hover: null, $active: false) {
+
+  $angle-default-css: (
+    content: "",
+    border-color: $color,
+    border-style: solid,
+    position: absolute,
+    top: 50%
+  );
+
+  @if ($direction == "up" or $direction == "down") {
+
+    $size: floor($width / $sqrt2 - 2 * $thick);
+    $rate: 2 * $height / $width;
+    //$margin-top: round($rate*$size/(2*$sqrt2));
+    $margin-top: $rate * $size / (2 * $sqrt2);
+
+    &:before{
+      @include get-list($angle-default-css);
+      width: $size;
+      height: $size;
+
+      @if ($right) {
+        right: $right;
+      }@else if($left){
+        left: $left;
+      }@else{
+        left: 50%;
+      }
+
+      @if ($rate == 1) {
+          -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+      } @else {
+          -webkit-transform: translate(-50%, -50%) scale(1, $rate) rotate(45deg);
+          transform: translate(-50%, -50%) scale(1, $rate) rotate(45deg);
+      }
+
+      @if ($direction == "up") {
+        margin-top: $margin-top;
+        border-width: $thick 0 0 $thick;
+      } @else if ($direction == "down") {
+        margin-top: - $margin-top;
+        border-width: 0 $thick $thick 0;
+      }
+    }
+
+    @if ($direction == "up") {
+
+      @if ($hover == true and $active){
+        &:hover:before,
+        &.#{$active}:before{
+          margin-top: - $margin-top;
+          border-width: 0 $thick $thick 0;
+        }
+      }@else if ($hover == true){
+        &:hover:before{
+          margin-top: - $margin-top;
+          border-width: 0 $thick $thick 0;
+        }
+      }@else if ($active){
+        &.#{$active}:before{
+          margin-top: - $margin-top;
+          border-width: 0 $thick $thick 0;
+        }
+      }
+
+    }@else if ($direction == "down"){
+
+      @if ($hover == true and $active){
+        &:hover:before,
+        &.#{$active}:before{
+          margin-top: $margin-top;
+          border-width: $thick 0 0 $thick;
+        }
+      }@else if ($hover == true){
+        &:hover:before{
+          margin-top: $margin-top;
+          border-width: $thick 0 0 $thick;
+        }
+      }@else if ($active){
+        &.#{$active}:before{
+          margin-top: $margin-top;
+          border-width: $thick 0 0 $thick;
+        }
+      }
+
+    }
+
+  }@else if ($direction == "left" or $direction == "right") {
+    $size: floor($height / $sqrt2 - 2 * $thick);
+    $rate: 2 * $width / $height;
+    //$margin-left: round($rate*$size/(2*$sqrt2));
+    $margin-left: $rate * $size / (2 * $sqrt2);
+
+    &:before{
+      @if ($right) {
+        right: $right;
+      }@else if($left){
+        left: $left;
+      }@else{
+        left: 50%;
+      }
+      @include get-list($angle-default-css);
+      width: $size;
+      height: $size;
+      @if ($rate == 1) {
+          -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+      } @else {
+          -webkit-transform: translate(-50%, -50%) scale($rate, 1) rotate(45deg);
+          transform: translate(-50%, -50%) scale($rate, 1) rotate(45deg);
+      }
+
+      @if ($direction == "left") {
+        margin-left: $margin-left;
+        border-width: 0 0 $thick $thick;
+      } @else if ($direction == "right") {
+        margin-left: - $margin-left;
+        border-width: $thick $thick 0 0;
+      }
+    }
+
+    @if ($direction == "left") {
+
+      @if ($hover == true and $active){
+        &:hover:before,
+        &.#{$active}:before{
+          margin-left: - $margin-left;
+          border-width: $thick $thick 0 0;
+        }
+      }@else if ($hover == true){
+        &:hover:before{
+          margin-left: - $margin-left;
+          border-width: $thick $thick 0 0;
+        }
+      }@else if ($active){
+        &.#{$active}:before{
+          margin-left: - $margin-left;
+          border-width: $thick $thick 0 0;
+        }
+      }
+
+    }@else if ($direction == "right"){
+
+      @if ($hover == true and $active){
+        &:hover:before,
+        &.#{$active}:before{
+          margin-left: $margin-left;
+          border-width: 0 0 $thick $thick;
+        }
+      }@else if ($hover == true){
+        &:hover:before{
+          margin-left: $margin-left;
+          border-width: 0 0 $thick $thick;
+        }
+      }@else if ($active){
+        &.#{$active}:before{
+          margin-left: $margin-left;
+          border-width: 0 0 $thick $thick;
+        }
+      }
+
+    }
+
+  }
+
+}

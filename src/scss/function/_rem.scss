@@ -1,0 +1,40 @@
+/// px to rem 또는 rem to px 변환 function
+/// @access public
+/// @group Function
+/// @param {Value} $value - px to rem 또는 rem to px 변환값
+/// @return {unit} - rem  or px
+/// @example scss - Scss
+///		.foo {
+///			font-size: rem(14);
+///		}
+///		.bar {
+///			margin-top: rem(4px);
+///		}
+///		.baz {
+///			font-size: rem(1rem);
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 font-size: 224px;
+///		 }
+///		.bar{
+///			 font-size: 0.875rem;
+///		 }
+///		.baz{
+///			 font-size: 16px;
+///		 }
+///
+
+@function rem($value) {
+	$root: $rem-base-size;
+	$val: strip-unit($value);
+	$return: ();
+
+	@if unit($value) == "px" {
+		$return: append($return, ($val / $root + rem));
+	} @else {
+		$return: append($return, ($val * $root + px));
+	}
+
+	@return $return;
+}

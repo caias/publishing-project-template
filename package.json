@@ -1,0 +1,50 @@
+{
+  "name": "scaffolding",
+  "version": "1.2.0",
+  "description": "ui-devloper resource",
+  "main": "gulpfile.babel.js",
+  "scripts": {
+    "build": "gulp --env=prod build && gulp serverPath"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caias/cits.git"
+  },
+  "author": "caias <caias1018@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "6.24.1",
+    "babel-register": "6.26.0",
+    "babelify": "10.0.0",
+    "browser-sync": "2.24.6",
+    "browserify": "16.5.1",
+    "del": "3.0.0",
+    "gulp": "4.0.0",
+    "gulp-autoprefixer": "5.0.0",
+    "gulp-babel": "8.0.0",
+    "gulp-cache": "1.0.2",
+    "gulp-cached": "1.1.1",
+    "gulp-hologram": "1.2.3",
+    "gulp-html-lint": "0.0.2",
+    "gulp-htmllint": "0.0.16",
+    "gulp-if": "2.0.2",
+    "gulp-imagemin": "4.1.0",
+    "gulp-load-plugins": "1.5.0",
+    "gulp-plumber": "1.2.0",
+    "gulp-purify-css": "0.1.0",
+    "gulp-replace": "1.0.0",
+    "gulp-sass": "4.0.1",
+    "gulp-sass-glob": "1.0.9",
+    "gulp-scss-lint": "0.7.0",
+    "gulp-sourcemaps": "2.6.4",
+    "gulp-tap": "2.0.0",
+    "gulp.spritesmith": "6.9.0",
+    "gulp.spritesmith-multi": "3.1.0",
+    "vinyl-buffer": "1.0.1"
+  },
+  "dependencies": {
+    "@babel/core": "7.10.2",
+    "@babel/preset-env": "7.10.2",
+    "@babel/register": "7.10.1"
+  }
+}

@@ -1,0 +1,21 @@
+/// component 상속 정리 mixin
+/// @access public
+/// @group Mixin
+/// @param {$selector} String [null] - class name
+/// @example scss - Scss
+///  .foo{
+///    @include inherit('.no-opacity') {
+///      display:none;
+///    )
+///  )
+/// @example css - Compile css
+///		.no-opacity .foo{
+///			display:none;
+///		 }
+///
+
+@mixin inherit($selector){
+  .#{$selector} & {
+    @content;
+  }
+}

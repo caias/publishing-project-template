@@ -1,0 +1,45 @@
+/// 말줄임표를 위한 Mixin
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {Number} $lines [1] - 행의 수
+/// @param {Number} $line-height [null] - 행간 수치
+/// @example scss - Scss
+///		.foo {
+///			@include ellipsis()
+///		}
+///		.bar{
+///			@include ellipsis(2 , 18)
+///		}
+/// @example css - Compile css
+///   .foo {
+///		  width: 100%;
+///		  overflow: hidden;
+///		  white-space: nowrap;
+///		  text-overflow: ellipsis;
+///   }
+///   .bar {
+///		  width: 100%;
+///		  line-height: 18px;
+///		  max-height: 36px;
+///		  overflow: hidden;
+///		  display: -webkit-box;
+///		  -webkit-line-clamp: 2;
+///		  text-overflow: ellipsis;
+///		  -webkit-box-orient: vertical;
+///   }
+///
+
+@mixin ellipsis($lines: 1, $line-height: false){
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	@if ($lines > 1){
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: $lines;
+		display: -webkit-box;
+		max-height: $line-height * $lines;
+	}@else{
+		white-space: nowrap;
+	}
+}

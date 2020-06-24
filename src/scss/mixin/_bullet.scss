@@ -1,0 +1,45 @@
+/// bullet mixin (프로젝트별 공통 블릿에 따라 Default값 변경)
+/// @access public
+/// @group Mixin
+/// @param {Number} $size [2] - buiiet size
+/// @param {Color} $color [#999] - bullet backround color
+/// @param {Number} $line-height [20] - bullet이 들어가는 텍스트 행간
+/// @param {Number} $pdl [10] - padding-left값
+/// @param {Number} $radius [50%] - border-radius5값
+/// @example scss - Scss
+///		.foo {
+///			@include bullet()
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 position: relative;
+///			 padding-left: 10px;
+///			 line-height: 20px;
+///			 &:before{
+///				 content: "";
+///				 width: 2px;
+///				 height: 2px;
+///				 position: absolute;
+///				 left: 0;
+///				 top: 9px;
+///				 border-radius: 50%;
+///				 background-color: #999;
+///			 }
+///		 }
+///
+
+@mixin bullet($size:null, $background-color:null, $top:null, $direction:"left", $border-radius:0){
+	position: relative;
+	&:before{
+		content: "";
+		@include size($size);
+		border-radius: $border-radius;
+		background-color: $background-color;
+		@if ($direction == "left"){
+			@include poslt(0, $top);
+		}
+		@if ($direction == "right"){
+			@include posrt(0, $top);
+		}
+	}
+}

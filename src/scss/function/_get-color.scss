@@ -1,0 +1,48 @@
+/// colorpicker
+/// @access public
+/// @group Function
+/// @param {$map} $color [1] - color pallete
+/// @param {$map value} $value [null] - color값
+/// @example scss - Scss
+///   $palettes : (
+///      white: (
+///        1 : #fff
+///      ),
+///      black: (
+///        1 : #000,
+///        2 : #555
+///      ),
+///      red: (
+///        1 : #ed1c24
+///      ),
+///    );
+///		.foo {
+///			color: color(black,1);
+///		}
+///		.bar {
+///			color: color(red,1);
+///		}
+///		.baz {
+///			color: color(black,2);
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 color: #000;
+///		 }
+///		.bar{
+///			 color: #ed1c24;
+///		 }
+///		.baz{
+///			 color: #555;
+///		 }
+///
+
+@function color($color, $value) {
+	$color-type: map-get($palettes, $color);
+	@if map-has-key($color-type, $value) {
+		@return map-get($color-type, $value);
+	}	@else {
+		@warn "리스트에 해당하는 #{$value}번값이 정의 되있지 않습니다. #{$color-type}에 있는 값들 중에 하나를 골라주세요.";
+		@return null;
+	}
+}

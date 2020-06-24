@@ -1,0 +1,41 @@
+/// 삼각형 모양의 아이콘
+/// @access public
+/// @group Mixin
+/// @author lkw
+/// @param {string} $direction [up] - 화살표방향(up,right,bottom,left)
+/// @param {number} $width [20px] - 아이콘 넓이값(up 또는 down일 경우 짝수값 권장)
+/// @param {number} $height [10px] - 아이콘 높이값(left 또는 right일 경우 짝수값 권장)
+/// @param {color} $color [#000] - 아이콘 색상값
+/// @example scss - Scss
+///		.foo:after {
+///			@include triangle();
+///		}
+/// @example css - Compile css
+///   .foo:after {
+///     content: "";
+///     border-bottom: 10px solid #000;
+///     border-left: 10px solid transparent;
+///     border-right: 10px solid transparent;
+///   }
+///
+
+@mixin triangle($direction: "up", $width: 20px, $height: 10px, $color: #000){
+  content: "";
+  @if ($direction == "up") {
+    border-bottom: $height solid $color;
+    border-left: round($width / 2) solid transparent;
+    border-right: round($width / 2) solid transparent;
+  } @else if ($direction == "down") {
+    border-top: $height solid $color;
+    border-left: round($width / 2) solid transparent;
+    border-right: round($width / 2) solid transparent;
+  } @else if ($direction == "left") {
+    border-top: round($height / 2) solid transparent;
+    border-bottom: round($height / 2) solid transparent;
+    border-right: $width solid $color;
+  } @else if ($direction == "right") {
+    border-top: round($height / 2) solid transparent;
+    border-bottom: round($height / 2) solid transparent;
+    border-left: $width solid $color;
+  }
+}

@@ -1,0 +1,61 @@
+/// sass map 의 리스트 값을 불러오는 Mixin
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {$map} $map [null] - sass mapping list의 map name값
+/// @param {property} $keys... [null] - sass map의 1depth property값
+/// @example scss - Scss
+///		$attr-list: (
+///			width: 100%,
+///			height: 50px,
+///			border: 1px solid #000;
+///		)
+///   .foo{
+///     @include get-list($attr-list);
+///   }
+/// @example css - Compile css
+///		.foo{
+///			 width: 100%;
+///			 height: 50px;
+///			 border: 1px solid #000;
+///		 }
+///
+
+@mixin get-list($map, $keys...){
+  $i: 1;
+  $length: length($keys);
+  @while $length >= $i{
+    $map: map-get($map, nth($keys, $i));
+    $i: $i + 1;
+  }
+
+  @each $property, $value in $map {
+    @if type-of($value) != map {
+     #{$property}: $value;
+    }
+  }
+};
+
+// @mixin get-nested-list($map, $tag: null, $suffix: null){
+//   @each $property , $value in $map {
+//     @if $tag == null {
+//       &.#{$suffix}#{$property}{
+//         @include get-list($map , $property);
+//       }
+//     }@else if type-of($tag) == "list"{
+//       &.#{$suffix}#{$property}{
+//         > #{nth($tag ,1)}{
+//           > #{nth($tag ,2)}{
+//             @include get-list($map , $property);
+//           }
+//         }
+//       }
+//     }@else{
+//       &.#{$suffix}#{$property}{
+//         > #{$tag}{
+//           @include get-list($map , $property);
+//         }
+//       }
+//     }
+//   }
+// }

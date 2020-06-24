@@ -1,0 +1,55 @@
+/// X 모양 아이콘 (ex. 닫기버튼 , 삭제버튼 등)
+/// @access public
+/// @group Mixin
+/// @author wit.nts-corp.com
+/// @param {Number} $size [null] - 아이콘 넓이/높이값 (하위브라우져를 위해 짝수값 권장)
+/// @param {Number} $thick [2px] - 아이콘 막대 두께
+/// @param {Number} $padding [0] - 아이콘 여백 값
+/// @param {color} $color [#000] - 아이콘 여백 값
+/// @example scss - Scss
+///		.foo {
+///     @include ic-x(22px,2px);
+///     @include relative();
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 width: 22px;
+///			 height: 22px;
+///			 position: relative;
+///			 &:after,
+///			 &:before{
+///        content: "";
+///        position: absolute;
+///        left: 50%;
+///        top: 50%;
+///        width: 29px;
+///        height: 2px;
+///        background-color: #000;
+///      }
+///			 &:after{
+///        transform: translate(-50%, -50%) rotate(45deg);
+///      }
+///			 &:before{
+///        transform: translate(-50%, -50%) rotate(135deg);
+///      }
+///		 }
+///
+
+@mixin ic-x($size: null, $thick: 1px, $padding: 0, $color: color(black,1)){
+  width: $size + $padding * 2;
+  height: $size + $padding * 2;
+  &:after,
+  &:before{
+    content: "";
+    @include poslt(50%, 50%);
+    width: round($size * $sqrt2 - $thick);
+    height: $thick;
+    background-color: $color;
+  }
+  &:after{
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &:before{
+    transform: translate(-50%, -50%) rotate(135deg);
+  }
+}

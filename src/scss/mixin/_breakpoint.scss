@@ -1,0 +1,69 @@
+/// 반응형 웹을 위한 Media Query Mixin  (breakpoint의 약자)
+/// @access public
+/// @group Mixin
+/// @author lkw
+/// @param {Number} $min [0] - Media Query 최소넓이
+/// @param {Number} $max [0] - Media Query 최대넓이
+/// @param {mo / tablet / pc} $type [null] - 기본으로 지정되있는 미디어쿼리 구분자
+/// @example scss - Scss
+///    @include bp(mo) {
+///      @content;
+///    }
+///    @include bp(320px) {
+///      @content;
+///    }
+///    @include bp(769px,1023px) {
+///      @content;
+///    }
+/// @example css - Compile css
+///    @media only screen and (max-width: 767px){
+///      @content;
+///    }
+///    @media only screen and (min-width: 320px){
+///      @content;
+///    }
+///    @media only screen and (min-width: 769px) and (max-width: 1023px){
+///      @content;
+///    }
+
+@mixin bp($min: 0, $max: 0) {
+  $type: type-of($min);
+
+  @if $type == string {
+    @if $min == mo {
+      @media only screen and (max-width: 767px) { @content; }
+    } @else if $min == tablet {
+      @media only screen and (min-width: 768px) and (max-width: 1024px) { @content; }
+    } @else if $min == pc {
+      @media only screen and (min-width: 1025px) { @content; }
+    } @else if $min == retina {
+      @media only screen and #{$retina} { @content; }
+    } @else {
+      @warn "breakpoint mixin에는 mo, tablet, pc, retina 4가지만 존재하고있습니다. 확인해주세요.";
+    }
+  } @else if $type == number {
+    $query: "all" !default;
+    @if $min != 0 and $max != 0 {
+      $query: "(min-width: #{$min}) and (max-width: #{$max})";
+    } @else if $min != 0 and $max == 0 {
+      $query: "(min-width: #{$min})";
+    } @else if $min == 0 and $max != 0 {
+      $query: "(max-width: #{$max})";
+    }
+    @media only screen and #{$query} {
+      @content;
+    }
+  }
+}
+
+// media query 참고용
+$phone : "(max-width: 480px)";
+$tablet-portrait: "(max-width: 767px)";
+$tablet-landscape: "(min-width: 768px) and (max-width: 979px)";
+$large-desktop: "(min-width: 1200px)";
+$non-retina: "screen and (-webkit-max-device-pixel-ratio: 1)";
+$retina: "(-webkit-min-device-pixel-ratio: 1.5),
+          (min-device-pixel-ratio: 1.5),
+          (min-resolution: 144dpi),
+          (min-resolution: 1.5dppx),
+          (max-width: 1150px)";

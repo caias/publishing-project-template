@@ -1,0 +1,72 @@
+/// sass map의 2뎁스까지의 매핑 값을 불러오는 mixin
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {$property} $property [null] - sass mapping list의 map $property(여기에선 클래스명이 됨)
+/// @param {$value} $value... [null] - sass map의 property값 list
+/// @param {$map} $map... [null] - mapping이 되어있는 불러올 map name
+/// @example scss - Scss
+///  $round-btn-color: (
+///    blue : (
+///      background-color: #305ec8,
+///      border: 1px solid #305ec8
+///    ),
+///    gray : (
+///      background-color: #999,
+///      border: 1px solid #000,
+///      color: #000
+///    ),
+///  );
+///   .foo{
+///     @include get-nested-list($round-btn-color);
+///   }
+/// @example css - Compile css
+///		.foo.blue{
+///			 background-color: #305ec8;
+///			 border: 1px solid #305ec8;
+///		 }
+///		.foo.gray{
+///			 background-color: #999;
+///			 border: 1px solid #000;
+///			 color: #000;
+///		 }
+///
+
+@mixin get-nested-list($map, $pusedo:null){
+  @each $property , $value in $map {
+		@if $pusedo {
+	    &.#{$property}:#{$pusedo}{
+	      @include get-list($map , $property);
+	    }
+		} @else {
+			&.#{$property}{
+	      @include get-list($map , $property);
+	    }
+		}
+  }
+}
+
+
+// @mixin get-nested-list($map, $tag: null, $suffix: null){
+//   @each $property , $value in $map {
+//     @if $tag == null {
+//       &.#{$suffix}#{$property}{
+//         @include get-list($map , $property);
+//       }
+//     }@else if type-of($tag) == "list"{
+//       &.#{$suffix}#{$property}{
+//         > #{nth($tag ,1)}{
+//           > #{nth($tag ,2)}{
+//             @include get-list($map , $property);
+//           }
+//         }
+//       }
+//     }@else{
+//       &.#{$suffix}#{$property}{
+//         > #{$tag}{
+//           @include get-list($map , $property);
+//         }
+//       }
+//     }
+//   }
+// }

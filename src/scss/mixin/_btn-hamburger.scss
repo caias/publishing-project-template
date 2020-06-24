@@ -1,0 +1,68 @@
+/// 모바일 햄버거 버튼 아이콘 (가상 선택자가 아닌 일반 태그로 해야됨)
+/// @access public
+/// @group Mixin
+/// @author wit.nts-corp.com
+/// @param {Number} $width [20px] - 아이콘 막대 넓이 값 (하위브라우져를 위해 짝수값 권장)
+/// @param {Number} $thick [2px] - 아이콘 막대 두께
+/// @param {Number} $interval [6px] - 아이콘 막대간의 간격
+/// @param {Color} $color [#000] - 아이콘 색상 값
+/// @param {Number} $padding [0] - 버튼과 아이콘 여백 값
+/// @example scss - Scss
+///		.foo {
+///     @include ic-hamburger();
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 display: block;
+///      position: relative;
+///			 margin: 8px 0;
+///			 .foo,
+///			 .foo:after,
+///			 .foo:before{
+///        width: 20px;
+///        height: 2px;
+///        background-color: #000;
+///      }
+///			 .foo:after,
+///			 .foo:before{
+///        content: "";
+///        position: absolute;
+///        left: 0;
+///      }
+///			 .foo:before{
+///        top: -8px;
+///      }
+///			 .foo:after{
+///        top: 8px;
+///      }
+///		 }
+///
+
+@mixin ic-hamburger($width: 20px, $thick: 2px, $interval: 6px, $color: #000, $padding: 0) {
+  position: relative;
+  display: block;
+  margin: $thick + $interval + $padding $padding;
+
+  &,
+  &:before,
+  &:after {
+    width: $width;
+    height: $thick;
+    background-color: $color;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  &:before {
+    top: -($thick + $interval);
+  }
+
+  &:after {
+    top: $thick + $interval;
+  }
+}

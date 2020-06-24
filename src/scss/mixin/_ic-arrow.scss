@@ -1,0 +1,126 @@
+/// 화살표 모양 아이콘
+/// @access public
+/// @group Mixin
+/// @author wit.nts-corp.com
+/// @param {string} $direction [up] - 화살표방향(up,right,bottom,left)
+/// @param {number} $width [8px] - 아이콘 넓이값(up 또는 down일 경우 짝수값 권장)
+/// @param {number} $height [16px] - 아이콘 높이값(left 또는 right일 경우 짝수값 권장)
+/// @param {Number} $thick [2px] - 아이콘 막대 두께
+/// @param {color} $color [#222] - 아이콘 여백 값
+/// @param {inline-block / block} $display [inline-block] - 아이콘 display속성
+/// @param {relative / absolute} $position [absolute] - 아이콘 position속성
+/// @example scss - Scss
+///		.foo {
+///     @include ic-arrow($position: absolute);
+///		}
+/// @example css - Compile css
+///		.foo{
+///      display: inline-block;
+///      position: absolute;
+///      width: 8px;
+///      height: 16px;
+///    }
+///		.foo:before{
+///      content: "";
+///      position: absolute;
+///      border-top: 2px solid #222;
+///      border-left: 2px solid #222;
+///      left: 50%;
+///      width: 4px;
+///      height: 4px;
+///      top: 4px;
+///      -webkit-transform: translate(-50%, -50%) rotate(45deg);
+///      transform: translate(-50%, -50%) rotate(45deg);
+///    }
+///		.foo:after{
+///      content: "";
+///      position: absolute;
+///      background-color: #222;
+///      top: 1px;
+///      left: 50%;
+///      width: 2px;
+///      height: 15px;
+///      -webkit-transform: translate(-50%, 0);
+///      transform: translate(-50%, 0);
+///    }
+///
+
+@mixin ic-arrow($direction: "up", $width: 8px, $height: 16px, $thick: 2px, $color: #222, $display: inline-block, $position: relative) {
+  position: $position;
+  display: $display;
+  width: $width;
+  height: $height;
+  &:before {
+    content: "";
+    position: absolute;
+    border-top: $thick solid $color;
+    border-left: $thick solid $color;
+
+    @if ($direction == "up" or $direction == "down") {
+      $size: round($width / $sqrt2 - $thick);
+      left: 50%;
+      width: $size;
+      height: $size;
+
+      @if ($direction == "up") {
+          top: round($width / 2);
+          -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+      } @else if ($direction == "down") {
+          bottom: round($width / 2);
+          -webkit-transform: translate(-50%, 50%) rotate(-135deg);
+          transform: translate(-50%, 50%) rotate(-135deg);
+      }
+    } @else if ($direction == "left" or $direction == "right") {
+      $size: round($height / $sqrt2 - $thick);
+      top: 50%;
+      width: $size;
+      height: $size;
+
+      @if ($direction == "left") {
+          left: round($height / 2);
+          -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+      } @else if ($direction == "right") {
+          right: round($height / 2);
+          -webkit-transform: translate(50%, -50%) rotate(135deg);
+          transform: translate(50%, -50%) rotate(135deg);
+      }
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: $color;
+
+    @if ($direction == "up" or $direction == "down") {
+
+      @if ($direction == "up") {
+          top: round($thick / $sqrt2);
+      } @else if ($direction == "down") {
+          bottom: round($thick / $sqrt2);
+      }
+
+      left: 50%;
+      width: $thick;
+      height: $height - round($thick / $sqrt2);
+      -webkit-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+
+    } @else if ($direction == "left" or $direction == "right") {
+      top: 50%;
+
+      @if ($direction == "left") {
+          left: round($thick / $sqrt2);
+      } @else if ($direction == "right") {
+          right: round($thick / $sqrt2);
+      }
+
+      width: $width - round($thick / $sqrt2);
+      height: $thick;
+      -webkit-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+    }
+  }
+}

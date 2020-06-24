@@ -1,0 +1,181 @@
+// label{
+//   position: relative;
+//   display: inline-block;
+//   cursor: pointer;
+//   vertical-align: middle;
+// }
+
+// input[type=text]::-ms-clear {
+//   display: none !important;
+// }
+// ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+//   color: $input-placeholder-font-color !important;
+// }
+// ::-moz-placeholder { /* Firefox 19+ */
+//   color: $input-placeholder-font-color !important;
+// }
+// :-ms-input-placeholder { /* IE 10+ */
+//   color: $input-placeholder-font-color !important;
+// }
+
+// input[type="text"]:disabled,
+// select:disabled,
+// input[readonly="readonly"],
+// textarea[readonly="readonly"]{
+//   border-color: $input-disable-border-color;
+//   background-color: $input-disable-background-color;
+//   color: $input-disable-font-color;
+// }
+
+// input[type="text"],
+// input[type="password"] {
+//   @include bd;
+//   @include vtext(40px);
+//   font-family: $font-family-base;
+//   font-size: $font-size-base;
+//   color: $black;
+//   padding: 0 38px 0 $input-space;
+//   font-size: 14px;
+// }
+
+// select{
+//   @include bd;
+//   color: color(black, 3);
+//   min-width: 142px;
+//   height: 40px;
+//   background-color: $white;
+//   font-family: $font-family-base;
+//   font-size: $font-size-base;
+//   padding-left: 7px;
+// }
+
+// input[type="file"]{
+//   @include size(1px);
+//   @include poslt;
+//   opacity: 0;
+// }
+
+// input[type="checkbox"],
+// input[type="radio"]{
+//   @include absolute;
+//   opacity: 0;
+// }
+
+// textarea{
+//   @include bd;
+//   @include size(100%, 160px);
+//   display: block;
+//   padding: $default-space;
+//   margin:0;
+//   font-size: $font-size-base;
+//   font-family: $font-family-base;
+//   color: color(black, 3);
+//   resize: none;
+//   box-sizing: border-box;
+// }
+
+// input[type="text"],
+// input[type="password"],
+// textarea{
+//   outline:none;
+//   &:focus{
+//     border-color: $blue;
+//   }
+// }
+
+
+// .chk,
+// .rdo{
+// 	@include vtext(20px);
+// 	padding-left: 29px;
+// 	font-size: $font-size-base;
+//   font-family: $font-family-base;
+//   color: $black;
+// 	&.only{
+//     @include size(20px);
+// 		padding-left: 0;
+// 	}
+// }
+
+// .chk{
+//   &:hover:before{
+//     @include sprite-position($ic-ck-hover);
+//   }
+// }
+
+// .rdo{
+//   &:hover:before{
+//     @include sprite-position($ic-rb-hover);
+//   }
+// }
+
+// .rdo-wrap{
+//   @include vtext(40px);
+//   font-size: 0;
+//   .rdo ~ .rdo{
+//     margin-left: $primary-space;
+//   }
+// }
+
+// %chk-and-rdo-pseudo{
+// 	content:'';
+// 	@include poslt;
+//   @extend %sprite;
+// }
+
+// .chk:before{
+// 	@extend %chk-and-rdo-pseudo;
+// 	@include sprite($ic-ck-unchecked);
+// }
+
+// .rdo:before{
+// 	@extend %chk-and-rdo-pseudo;
+// 	@include sprite($ic-rb-unchecked);
+// }
+
+// input[type="checkbox"]{
+//   &:checked{
+//     + .chk:before{
+//       @include sprite-position($ic-ck-active);
+//     }
+//   }
+//   &:disabled{
+//     + .chk:before{
+//       @include sprite-position($ic-ck-disabled);
+//     }
+//   }
+// }
+
+// input[type="radio"]{
+//   &:checked{
+//     + .rdo:before{
+//       @include sprite-position($ic-rb-active);
+//     }
+//   }
+//   &:disabled{
+//     + .rdo:before{
+//       @include sprite-position($ic-rb-disabled);
+//     }
+//   }
+// }
+
+// .input-file{
+//   position: relative;
+//   padding-right: 150px;
+//   .button-set{
+//     @include posrt;
+//     font-size: 0;
+//     button{
+//       margin-left: $default-space;
+//     }
+//   }
+// }
+
+// .select-with-input{
+//   padding-left: 140px;
+//   position: relative;
+//   .selectbox{
+//     @include poslt;
+//     width: 130px;
+//   }
+// }

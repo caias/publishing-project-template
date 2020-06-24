@@ -1,0 +1,64 @@
+/// bullet mixin (프로젝트별 공통 블릿에 따라 Default값 변경)
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {Number} $width [null] - layer 넓이값
+/// @param {Number} $height [null] - layer 높이값
+/// @param {position Attribute} $position [absolute] - position속성
+/// @example scss - Scss
+///		.foo {
+///			@include center-position(1000px,500px);
+///		}
+///		.bar {
+///			@include center-position(1000px,$position: fixed);
+///		}
+///		.baz {
+///			@include center-position($height: 500px);
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 position: absolute;
+///			 top: 50%;
+///			 left: 50%;
+///			 width: 1000px;
+///			 height: 500px;
+///			 margin: -250px 0 0 -500px;
+///		 }
+///		.bar{
+///			 position: fixed;
+///			 top: 50%;
+///			 left: 50%;
+///			 width: 1000px;
+///			 margin-left: -500px;
+///			 transform: translateY(-50%);
+///		 }
+///		.baz{
+///			 position: absolute;
+///			 top: 50%;
+///			 left: 50%;
+///			 height: 500px;
+///			 margin-top: -250px;
+///			 transform: translateX(-50%);
+///		 }
+///
+
+@mixin center-position($width: null, $height: null, $position: absolute) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+   @if not $width and not $height {
+     transform: translate(-50%, -50%);
+   } @else if $width and $height {
+     width: $width;
+     height: $height;
+     margin: -($height / 2) #{0 0} -($width / 2);
+   } @else if not $height {
+     width: $width;
+     margin-left: -($width / 2);
+     transform: translateY(-50%);
+   } @else {
+     height: $height;
+     margin-top: -($height / 2);
+     transform: translateX(-50%);
+   }
+ }

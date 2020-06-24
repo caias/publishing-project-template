@@ -1,0 +1,28 @@
+/// block 사이즈
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {Number} $width [null] - 가로사이즈
+/// @param {Number} $height [$width] - 세로사이즈
+/// @example scss - Scss
+///		.foo {
+///			@include size(20px)
+///		}
+///		.bar{
+///			@include size(20px,18px)
+///		}
+/// @example css - Compile css
+///   .foo {
+///     width: 20px;
+///     height: 20px;
+///   }
+///   .bar {
+///     width: 20px;
+///     height: 18px;
+///   }
+///
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}

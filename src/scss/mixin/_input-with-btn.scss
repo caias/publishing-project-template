@@ -1,0 +1,74 @@
+/// input과 버튼이 같이 있는 경우(버튼 제외 반응형)
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {Number} $pdr [null] - padding-right값
+/// @param {Number} $height [null] - input 높이값(버튼과 인풋이 높이가 다른경우)
+/// @param {Number} $right [0] - 기본값이 아닌경우 수치 적용
+/// @param {Number} $top [0] - 기본값이 아닌경우 수치 적용
+/// @example scss - Scss
+///		.foo {
+///			@include withbtn(30px)
+///		}
+///		.bar {
+///			@include withbtn(30px, 30px);
+///		}
+///		.baz {
+///			@include withbtn(30px, $right: 10px, $top: 5px);
+///		}
+/// @example css - Compile css
+///		.foo{
+///			 padding-right: 30px;
+///			 box-sizing: border-box;
+///      input{
+///        width: 100%;
+///      }
+///      button,a{
+///        position: absolute;
+///        right: 0;
+///        top: 0;
+///      }
+///		 }
+///		.bar{
+///			 padding-right: 30px;
+///			 box-sizing: border-box;
+///      input{
+///        width: 100%;
+///        height: 30px;
+///        line-height: 30px;
+///      }
+///      button,a{
+///        position: absolute;
+///        right: 0;
+///        top: 0;
+///      }
+///		 }
+///		.baz{
+///			 padding-right: 30px;
+///			 box-sizing: border-box;
+///      input{
+///        width: 100%;
+///      }
+///      button,a{
+///        position: absolute;
+///        right: 10px;
+///        top: 5px;
+///      }
+///		 }
+///
+
+@mixin withbtn($pdr: null, $height: null, $right: 0, $top: 0){
+  @include relative();
+  padding-right: $pdr;
+  box-sizing: border-box;
+  > input{
+    width: 100%;
+    @if $height {
+      @include vtext($height...);
+    }
+  }
+  button,
+  a{
+    @include posrt($right, $top);
+  }
+}

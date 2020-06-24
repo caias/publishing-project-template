@@ -1,18 +1,28 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+*DS_Store*
 
-# Other files and folders
-.settings/
+._*
+**/.sass-cache/**
+**/.__*.scss
+*.css.map
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# Dependency directory
+# Commenting this out is preferred by some people, see
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Garbage files
+.DS_Store
+
+# debug log
+*.log
+
+# 컴파일된 파일들의 폴더
+dist/
+
+# hologram 생성시 쓰이는 파일들
+wsg/
+
+# scssdoc 생성시 쓰이는 파일들
+docs/
+
+src/html/test.html

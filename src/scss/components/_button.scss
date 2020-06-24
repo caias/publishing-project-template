@@ -1,0 +1,47 @@
+button{
+  @include radius(0);
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  span{
+    position: relative;
+    vertical-align: top;
+    &.hidden{
+      font-size: 0;
+      color: transparent;
+    }
+  }
+}
+
+a,
+button {
+  display: inline-block;
+  vertical-align: middle;
+  border: 0 none;
+  font: inherit;
+  background: none;
+  color: inherit;
+}
+
+a,
+a:active,
+a:hover,
+a:focus{
+  text-decoration: none;
+}
+
+.btn{
+  @extend %bold;
+  @include vtext(46px, 43px);
+  @include radius(23px);
+  min-width: 110px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.btn-wrap{
+  text-align: right;
+  margin-top: 30px;
+  font-size: 0;
+}

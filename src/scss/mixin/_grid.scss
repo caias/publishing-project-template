@@ -1,0 +1,39 @@
+/// 반응형 Grid Column
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {Number} $grid-count [null] - Column 갯수
+/// @param {Number} $grid-space [null] - Column 여백
+/// @example scss - Scss
+///		.foo {
+///			@include grid(2,10px);
+///		}
+/// @example css - Compile css
+///   .foo.grid02 {
+///     width: auto;
+///     margin-left: -10px;
+///     overflow: hidden;
+///     > .grid{
+///       float: left;
+///       width: 50%;
+///       padding-left: 10px;
+///       box-sizing: border-box;
+///     }
+///   }
+///
+
+@mixin grid($grid-count: null , $grid-space: null){
+  &.grid0#{$grid-count}{
+    @extend %clearfix;
+    width: auto;
+    @if($grid-space){
+      margin-left: - #{$grid-space};
+    }
+    > .grid{
+      float: left;
+      width: (100% / $grid-count);
+      padding-left: $grid-space;
+      box-sizing: border-box;
+    }
+  }
+}

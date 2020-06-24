@@ -1,0 +1,29 @@
+/// screen reader only(웹접근성 IR기법)
+/// @access public
+/// @group Mixin
+/// @author bootstrap
+/// @example scss - Scss
+///		.sr-only {
+///			@include sr-only()
+///		}
+/// @example css - Compile css
+///		.sr-only{
+///			 position: absolute;
+///			 width: 1px;
+///			 height: 1px;
+///			 padding: 0;
+///			 margin: -1px;
+///			 overflow: hidden;
+///			 clip: rect(0,0,0,0);
+///			 border: 0;
+///		 }
+///
+
+@mixin sr-only{
+	@include absolute();
+	@include size(1px);
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

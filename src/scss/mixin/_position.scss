@@ -1,0 +1,102 @@
+/// position attribute
+/// @access public
+/// @group Mixin
+/// @author LKW
+/// @param {String} $position - `relative`, `absolute` or `fixed`
+/// @param {Length} $top [null] - Top offset
+/// @param {Length} $right [null] - Right offset
+/// @param {Length} $bottom [null] - Bottom offset
+/// @param {Length} $left [null] - Left offset
+/// @example scss - Scss
+///		.foo {
+///			@include absolute($left: 0,$top: 0);
+///		}
+///		.bar{
+///			@include relative();
+///		}
+///		.baz{
+///			@include fixed($left: 50%,$top: 50%);
+///		}
+///		.posrt{
+///			@include posrt();
+///		}
+///		.posrb{
+///			@include posrb();
+///		}
+///		.poslt{
+///			@include poslt();
+///		}
+///		.poslb{
+///			@include poslb();
+///		}
+/// @example css - Compile css
+///   .foo {
+///    position: absolute;
+///    left: 0;
+///    top: 0;
+///   }
+///   .bar {
+///    position: relative;
+///   }
+///   .baz{
+///    position: fixed;
+///    left: 50%;
+///    top: 50%;
+///   }
+///   .posrt{
+///    position: absolute;
+///    right: 0;
+///    top: 0;
+///   }
+///   .posrb{
+///    position: absolute;
+///    right: 0;
+///    bottom: 0;
+///   }
+///   .poslt{
+///    position: absolute;
+///    left: 0;
+///    top: 0;
+///   }
+///   .poslb{
+///    position: absolute;
+///    left: 0;
+///    bottom: 0;
+///   }
+///
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin absolute($args...){
+  @include position(absolute, $args...);
+}
+
+@mixin relative($args...){
+  @include position(relative, $args...);
+}
+
+@mixin fixed($args...){
+  @include position(fixed, $args...);
+}
+
+@mixin posrt($right: 0, $top: 0){
+  @include absolute($right: $right, $top: $top);
+}
+
+@mixin poslt($left: 0, $top: 0){
+  @include absolute($left: $left, $top: $top);
+}
+
+@mixin posrb($right: 0, $bottom: 0){
+  @include absolute($right: $right, $bottom: $bottom);
+}
+
+@mixin poslb($left: 0, $bottom: 0){
+  @include absolute($left: $left, $bottom: $bottom);
+}
