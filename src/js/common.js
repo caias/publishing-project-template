@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const test = require('./module/test');
+const sample = require('./module/sample');
 
 /**
  * data-attribute 모음
@@ -20,5 +20,5 @@ $(document).ready(function () {
 });
 
 function init() {
-  test();
+  sample();
 };

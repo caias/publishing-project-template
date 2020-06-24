@@ -9,7 +9,7 @@ const vinyl = require('vinyl-buffer'),
  */
 module.exports = (gulp, $, config) => {
 
-    function jsbabal() {
+    function jsbabel() {
         return gulp
         .src(config.js.src, { base: 'src' })
         .pipe($.tap(function (file) {
@@ -25,7 +25,7 @@ module.exports = (gulp, $, config) => {
         .pipe(gulp.dest(config.js.dest))
         .pipe(browserSync.stream());
     }
-    jsbabal.description = 'JS파일을 Dist 폴더로 복사합니다.'
+    jsbabel.description = 'JS파일을 Dist 폴더로 복사합니다.'
 
     function jscopy() {
         return gulp
@@ -34,9 +34,9 @@ module.exports = (gulp, $, config) => {
         .pipe(browserSync.stream());
     }
 
-    gulp.task(jsbabal);
+    gulp.task(jsbabel);
     gulp.task(jscopy);
 
-    gulp.task('js', gulp.parallel('jsbabal', 'jscopy'));
+    gulp.task('js', gulp.parallel('jsbabel', 'jscopy'));
 
 };

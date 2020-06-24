@@ -13,7 +13,6 @@ const config = {
 		src	 : [
 			'src/**/*.js',
 			'!src/js/module/*.js',
-			'!src/js/vendor/jquery.mCustomScrollbar.min.js',
 			'!src/js/vendor/jquery-3.1.0.min.js',
 		],
 		dest	: 'dist/'
@@ -22,7 +21,6 @@ const config = {
 	jsexception: {
 		src: [
 			'src/js/vendor/jquery-3.1.0.min.js',
-			'src/js/vendor/jquery.mCustomScrollbar.min.js'
 		],
 		dest: 'dist/js/'
 	},

@@ -23,7 +23,7 @@ module.exports = (gulp, $, config) => {
     let watcher = {
       scss: gulp.watch(config.scss.src, gulp.task('sass')),
       html: gulp.watch(config.html.src, gulp.task('html')),
-      js: gulp.watch('src/js/**/*.js', gulp.task('jsbabal')),
+      js: gulp.watch('src/js/**/*.js', gulp.task('jsbabel')),
       images: gulp.watch(config.image.src, gulp.task('images')),
       sprite: gulp.watch(config.sprite.src, gulp.task('spsass')),
       retina: gulp.watch(config.retina.src, gulp.task('spsass')),
