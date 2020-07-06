@@ -36,6 +36,7 @@ $black: color(black, 1);
 $red: color(red, 1);
 $green: color(green, 1);
 $blue: color(blue, 1);
+$background-color-base: color(white, 2);
 
 //reset 폰트 관련
 $font-color-base: color(black, 2) !default;
@@ -68,8 +69,19 @@ $input-space: 10px;
 $default-space: 10px;
 $primary-space: 20px;
 
-$header-size: 60px;
-$background-color-base: color(white, 2);
+$header-height: 80px;
+$footer-height: 80px;
+
+// paging arrow image
+$paging-height: null;
+$paging-top-space: 50px;
+$paging-active-color: $blue;
+$paging-prev-space: $default-space;
+$paging-next-space: $default-space;
+$first-image: null;
+$prev-image: null;
+$next-image: null;
+$last-image: null;
 
 // route2
 $sqrt2 : 1.41421356237;
