@@ -1,5 +1,6 @@
 const vinyl = require('vinyl-buffer'),
       browserify = require('browserify'),
+	  isProduction= require('./config/gulp.env'),
       browserSync = require('browser-sync').create(),
       reload = browserSync.reload;
 /**
@@ -20,8 +21,9 @@ module.exports = (gulp, $, config) => {
                 .bundle();
         }))
         .pipe(vinyl())
-        .pipe($.sourcemaps.init({ loadMaps: true }))
-        .pipe($.sourcemaps.write('./'))
+        // .pipe($.sourcemaps.init({ loadMaps: true }))
+        // .pipe($.sourcemaps.write('./'))
+        .pipe($.if(isProduction, $.stripComments()))
         .pipe(gulp.dest(config.js.dest))
         .pipe(browserSync.stream());
     }
