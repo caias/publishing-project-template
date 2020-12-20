@@ -7,6 +7,7 @@
        url('/dist/fonts/NanumGothic-Regular.woff') format('woff'),
        url('/dist/fonts/NanumGothic-Regular.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'NGB';
   font-style: normal;
@@ -15,6 +16,16 @@
   src: url('/dist/fonts/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'),
        url('/dist/fonts/NanumGothic-Bold.woff') format('woff'),
        url('/dist/fonts/NanumGothic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NGEB';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/dist/fonts/NanumGothic-ExtraBold.eot');
+  src: url('/dist/fonts/NanumGothic-ExtraBold.eot?#iefix') format('embedded-opentype'),
+       url('/dist/fonts/NanumGothic-ExtraBold.woff') format('woff'),
+       url('/dist/fonts/NanumGothic-ExtraBold.ttf') format('truetype');
 }
 
 /* noto-sans-kr-300 - */
