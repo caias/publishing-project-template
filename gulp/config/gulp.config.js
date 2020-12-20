@@ -12,21 +12,24 @@ const config = {
 	js : {
 		src	 : [
 			'src/**/*.js',
-			'!src/js/module/*.js',
-			'!src/js/vendor/jquery-3.1.0.min.js',
+			'!src/js/vendor/**/*.js',
 		],
 		dest	: 'dist/'
 	},
 
 	jsexception: {
 		src: [
-			'src/js/vendor/jquery-3.1.0.min.js',
+			'src/js/vendor/**/*.js',
+			'!src/js/vendor/jquery.mCustomScrollbar.min.js',
 		],
 		dest: 'dist/js/'
 	},
 
 	scss : {
-		src	 : 'src/scss/**/*.s+(a|c)ss',
+		src	 : [
+			'src/scss/**/*.s+(a|c)ss',
+			'!src/scss/jquery.mCustomScrollbar.scss',
+		],
 		dest	: 'dist/css'
 	},
 
