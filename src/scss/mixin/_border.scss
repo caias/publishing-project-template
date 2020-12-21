@@ -31,7 +31,7 @@
 ///		 }
 ///
 
-@mixin bd($border-color: $border-color-base, $border-width: $border-style-base , $border-style: $border-width-base){
+@mixin bd($border-color: $border-color-base, $border-width: $border-width-base , $border-style: $border-style-base){
 	@if length($border-width) > 1 {
 		border-style: $border-style;
 		border-color: $border-color;
