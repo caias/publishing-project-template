@@ -4,6 +4,7 @@
   "description": "ui-devloper resource",
   "main": "gulpfile.babel.js",
   "scripts": {
+    "start": "gulp",
     "build": "gulp --env=prod build && gulp serverPath"
   },
   "repository": {
