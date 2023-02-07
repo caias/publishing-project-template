@@ -23,7 +23,7 @@ module.exports = (gulp, $, config) => {
         .pipe(vinyl())
         // .pipe($.sourcemaps.init({ loadMaps: true }))
         // .pipe($.sourcemaps.write('./'))
-        .pipe($.if(isProduction, $.stripComments()))
+        .pipe($.gulpIf(isProduction, $.stripComments()))
         .pipe(gulp.dest(config.js.dest))
         .pipe(browserSync.stream());
     }

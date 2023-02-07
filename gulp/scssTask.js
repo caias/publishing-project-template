@@ -19,13 +19,13 @@ module.exports = (gulp, $, config) => {
         return gulp
         .src(config.scss.src)
         .pipe($.sassGlob())
-        .pipe($.if(!isProduction, $.sourcemaps.init() ))
+        .pipe($.gulpIf(!isProduction, $.sourcemaps.init() ))
         .pipe($.plumber({errorHandler: isProduction ? false : false}))
         //.pipe($.scssLint({'config': config.lint.scss}))
         //.pipe($.if(isProduction , $.scssLint.failReporter() ))
         .pipe($.sass(config.scssOptions).on('error', onError))
         .pipe($.autoprefixer(config.browsers) )
-        .pipe($.if(!isProduction , $.sourcemaps.write('./') ))
+        .pipe($.gulpIf(!isProduction , $.sourcemaps.write('./') ))
         .pipe(gulp.dest(config.scss.dest))
         .pipe(browserSync.stream());
     }
